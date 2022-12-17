@@ -10,7 +10,6 @@ namespace enoca.Models
         public bool OnayDurumu { get; set; }
         public DateTime SiparisIzinBaslangicTarihi { get; set; }
         public DateTime SiparisIzinBitisTarihi { get; set; }
-
     }
 }
-
+    

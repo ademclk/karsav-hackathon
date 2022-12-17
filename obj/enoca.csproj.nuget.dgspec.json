@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "\\\\Mac\\Home\\Documents\\Projects\\hackathon\\enoca\\enoca\\enoca\\enoca.csproj": {}
+    "/Users/ademclk/Documents/Projects/hackathon/enoca/enoca/enoca/enoca.csproj": {}
   },
   "projects": {
-    "\\\\Mac\\Home\\Documents\\Projects\\hackathon\\enoca\\enoca\\enoca\\enoca.csproj": {
+    "/Users/ademclk/Documents/Projects/hackathon/enoca/enoca/enoca/enoca.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "\\\\Mac\\Home\\Documents\\Projects\\hackathon\\enoca\\enoca\\enoca\\enoca.csproj",
+        "projectUniqueName": "/Users/ademclk/Documents/Projects/hackathon/enoca/enoca/enoca/enoca.csproj",
         "projectName": "enoca",
-        "projectPath": "\\\\Mac\\Home\\Documents\\Projects\\hackathon\\enoca\\enoca\\enoca\\enoca.csproj",
-        "packagesPath": "C:\\Users\\ademclk\\.nuget\\packages\\",
-        "outputPath": "\\\\Mac\\Home\\Documents\\Projects\\hackathon\\enoca\\enoca\\enoca\\obj\\",
+        "projectPath": "/Users/ademclk/Documents/Projects/hackathon/enoca/enoca/enoca/enoca.csproj",
+        "packagesPath": "/Users/ademclk/.nuget/packages/",
+        "outputPath": "/Users/ademclk/Documents/Projects/hackathon/enoca/enoca/enoca/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ademclk\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/ademclk/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -44,6 +38,20 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.12, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.11, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
@@ -55,8 +63,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -68,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet/6.0.110/libexec/sdk/6.0.110/RuntimeIdentifierGraph.json"
         }
       }
     }

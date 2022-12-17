@@ -1,5 +1,13 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using enoca.Data;
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddDbContext<UrunlerContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("UrunlerContext") ?? throw new InvalidOperationException("Connection string 'UrunlerContext' not found.")));
+builder.Services.AddDbContext<FirmaContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("FirmaContext") ?? throw new InvalidOperationException("Connection string 'FirmaContext' not found.")));
+builder.Services.AddDbContext<SiparisContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SiparisContext") ?? throw new InvalidOperationException("Connection string 'SiparisContext' not found.")));
 // Add services to the container.
 
 builder.Services.AddControllers();
