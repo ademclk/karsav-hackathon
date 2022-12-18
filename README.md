@@ -43,8 +43,6 @@
 ### Firma güncelleme için kullanılması gereken : PUT: /api/Firma
 ```
 {
-  "id": 0,
-  "firmaAdi": "FİRMA ADI",
   "onayDurumu": true,
   "siparisIzinBaslangicTarihi": "TARİH",
   "siparisIzinBitisTarihi": "TARİH"
