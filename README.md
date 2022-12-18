@@ -1,5 +1,34 @@
 # karsav-hackathon
 
+### Firma listelemek için kullanılması gereken : GET : /api/Firma
+
+Örnek bir yanıt
+```
+[
+  {
+    "id": 0,
+    "firmaAdi": "string",
+    "onayDurumu": true,
+    "siparisIzinBaslangicTarihi": "2022-12-18T00:52:06.27",
+    "siparisIzinBitisTarihi": "2022-12-18T00:52:06.27"
+  },
+  {
+    "id": 1,
+    "firmaAdi": "ademle",
+    "onayDurumu": false,
+    "siparisIzinBaslangicTarihi": "2022-12-18T01:48:02.84",
+    "siparisIzinBitisTarihi": "2022-12-18T01:48:02.84"
+  },
+  {
+    "id": 12,
+    "firmaAdi": "string",
+    "onayDurumu": true,
+    "siparisIzinBaslangicTarihi": "2022-12-18T01:54:29.847",
+    "siparisIzinBitisTarihi": "2022-12-18T01:54:29.847"
+  }
+]
+```
+
 ### Firma ekleme için kullanılması gereken : POST: /api/Firma
 ```
 {
