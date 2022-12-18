@@ -1,4 +1,4 @@
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using enoca.Data.Interfaces;
 
 namespace enoca.Data.Repositories;
@@ -23,7 +23,7 @@ public class FirmaRepository : IFirmaRepository
     public async Task<int> Put(Firma firma)
     {
         var result = await _dbContext.Firmalar.Where(x => x.Id == firma.Id).FirstOrDefaultAsync();
-        result.FirmaAdi = firma.FirmaAdi;
+        result!.FirmaAdi = firma.FirmaAdi;
         result.SiparisIzinBaslangicTarihi = firma.SiparisIzinBaslangicTarihi;
         result.SiparisIzinBitisTarihi = firma.SiparisIzinBitisTarihi;
         result.OnayDurumu = firma.OnayDurumu;
@@ -33,7 +33,7 @@ public class FirmaRepository : IFirmaRepository
     public async Task<bool> Delete(int id)
     {
         var result = await _dbContext.Firmalar.Where(x => x.Id == id).FirstOrDefaultAsync();
-        _dbContext.Firmalar.Remove(result);
+        _dbContext.Firmalar.Remove(result!);
         await _dbContext.SaveChangesAsync();
         return true;
     }

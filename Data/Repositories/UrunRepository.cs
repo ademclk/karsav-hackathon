@@ -1,4 +1,4 @@
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using enoca.Data.Interfaces;
 
 namespace enoca.Data.Repositories;
@@ -24,7 +24,7 @@ public class UrunRepository : IUrunRepository
     public async Task<int> Put(Urun urun)
     {
         var result = await _dbContext.Urunler.Where(x => x.Id == urun.Id).FirstOrDefaultAsync();
-        result.FirmaId = urun.FirmaId;
+        result!.FirmaId = urun.FirmaId;
         result.UrunAdi = urun.UrunAdi;
         result.Stok = urun.Stok;
         result.Fiyat = urun.Fiyat;
@@ -34,7 +34,7 @@ public class UrunRepository : IUrunRepository
     public async Task<bool> Delete(int id)
     {
         var result = await _dbContext.Urunler.Where(x => x.Id == id).FirstOrDefaultAsync();
-        _dbContext.Urunler.Remove(result);
+        _dbContext.Urunler.Remove(result!);
         await _dbContext.SaveChangesAsync();
         return true;
     }

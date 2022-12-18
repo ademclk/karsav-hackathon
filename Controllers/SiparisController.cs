@@ -22,8 +22,15 @@ public class SiparisController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post(Siparis siparis)
     {
-        var result = await _siparisRepository.Post(siparis);
-        return Ok(result);
+        try
+        {
+            var result = await _siparisRepository.Post(siparis);
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpPut]
