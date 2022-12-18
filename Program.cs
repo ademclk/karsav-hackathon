@@ -1,4 +1,5 @@
 ﻿global using enoca.Models;
+using enoca.Data;
 using enoca.Data.Interfaces;
 using enoca.Data.Repositories;
 using Microsoft.EntityFrameworkCore;

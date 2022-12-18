@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace enoca.Models
+namespace enoca.Data
 {
     public partial class enocaContext : DbContext
     {
