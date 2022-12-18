@@ -1,106 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using enoca.Data;
-using enoca.Models;
+using enoca.Data.Interfaces;
+namespace enoca.Controllers;
+[ApiController]
+[Route("api/[controller]")]
 
-namespace enoca.Controllers
+public class SiparisController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class SiparisController : ControllerBase
+    public ISiparisRepository _siparisRepository;
+    public SiparisController(ISiparisRepository siparisRepository)
     {
-        private readonly SiparisContext _context;
+        _siparisRepository = siparisRepository;
+    }
 
-        public SiparisController(SiparisContext context)
-        {
-            _context = context;
-        }
+    [HttpGet]
+    public async Task<IActionResult> Get()
+    {
+        var result = await _siparisRepository.Get();
+        return Ok(result);
+    }
 
-        // GET: api/Siparis
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Siparis>>> GetSiparis()
-        {
-            return await _context.Siparis.ToListAsync();
-        }
+    [HttpPost]
+    public async Task<IActionResult> Post(Siparis siparis)
+    {
+        var result = await _siparisRepository.Post(siparis);
+        return Ok(result);
+    }
 
-        // GET: api/Siparis/id
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Siparis>> GetSiparis(Guid id)
-        {
-            var siparis = await _context.Siparis.FindAsync(id);
+    [HttpPut]
+    public async Task<IActionResult> Put(Siparis siparis)
+    {
+        var result = await _siparisRepository.Put(siparis);
+        return Ok(result);
+    }
 
-            if (siparis == null)
-            {
-                return NotFound();
-            }
-
-            return siparis;
-        }
-
-        // PUT: api/Siparis/id
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutSiparis(Guid id, Siparis siparis)
-        {
-            if (id != siparis.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(siparis).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!SiparisExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Siparis
-        [HttpPost]
-        public async Task<ActionResult<Siparis>> PostSiparis(Siparis siparis)
-        {
-            _context.Siparis.Add(siparis);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetSiparis", new { id = siparis.Id }, siparis);
-        }
-
-        // DELETE: api/Siparis/id
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSiparis(Guid id)
-        {
-            var siparis = await _context.Siparis.FindAsync(id);
-            if (siparis == null)
-            {
-                return NotFound();
-            }
-
-            _context.Siparis.Remove(siparis);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool SiparisExists(Guid id)
-        {
-            return _context.Siparis.Any(e => e.Id == id);
-        }
+    [HttpDelete]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var result = await _siparisRepository.Delete(id);
+        return Ok(result);
     }
 }

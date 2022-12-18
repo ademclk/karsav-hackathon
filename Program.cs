@@ -1,19 +1,26 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿global using enoca.Models;
+using enoca.Data.Interfaces;
+using enoca.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using enoca.Data;
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<UrunlerContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("UrunlerContext") ?? throw new InvalidOperationException("Connection string 'UrunlerContext' not found.")));
-builder.Services.AddDbContext<FirmaContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("FirmaContext") ?? throw new InvalidOperationException("Connection string 'FirmaContext' not found.")));
-builder.Services.AddDbContext<SiparisContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SiparisContext") ?? throw new InvalidOperationException("Connection string 'SiparisContext' not found.")));
+
 // Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<enocaContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DataConnection"));
+});
+
+builder.Services.AddScoped<IFirmaRepository, FirmaRepository>();
+builder.Services.AddScoped<ISiparisRepository, SiparisRepository>();
+builder.Services.AddScoped<IUrunRepository, UrunRepository>();
+
 
 var app = builder.Build();
 

@@ -1,108 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using enoca.Data;
-using enoca.Models;
+using enoca.Data.Interfaces;
+namespace enoca.Controllers;
+[ApiController]
+[Route("api/[controller]")]
 
-namespace enoca.Controllers
+public class FirmaController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class FirmaController : ControllerBase
+    public IFirmaRepository _firmaRepository;
+    public FirmaController(IFirmaRepository firmaRepository)
     {
-        private readonly FirmaContext _context;
+        _firmaRepository = firmaRepository;
+    }
 
-        public FirmaController(FirmaContext context)
-        {
-            _context = context;
-        }
+    [HttpGet]
+    public async Task<IActionResult> Get()
+    {
+        var result = await _firmaRepository.Get();
+        return Ok(result);
+    }
 
-        // GET: api/Firma
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Firma>>> GetFirma()
-        {
-            return await _context.Firma.ToListAsync();
-        }
+    [HttpPost]
+    public async Task<IActionResult> Post(Firma firma)
+    {
+        var result = await _firmaRepository.Post(firma);
+        return Ok(result);
+    }
 
-        // GET: api/Firma/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Firma>> GetFirma(Guid id)
-        {
-            var firma = await _context.Firma.FindAsync(id);
+    [HttpPut]
+    public async Task<IActionResult> Put(Firma firma)
+    {
+        var result = await _firmaRepository.Put(firma);
+        return Ok(result);
+    }
 
-            if (firma == null)
-            {
-                return NotFound();
-            }
-
-            return firma;
-        }
-
-        // PUT: api/Firma/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutFirma(Guid id, Firma firma)
-        {
-            if (id != firma.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(firma).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FirmaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Firma
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Firma>> PostFirma(Firma firma)
-        {
-            _context.Firma.Add(firma);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetFirma", new { id = firma.Id }, firma);
-        }
-
-        // DELETE: api/Firma/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteFirma(Guid id)
-        {
-            var firma = await _context.Firma.FindAsync(id);
-            if (firma == null)
-            {
-                return NotFound();
-            }
-
-            _context.Firma.Remove(firma);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool FirmaExists(Guid id)
-        {
-            return _context.Firma.Any(e => e.Id == id);
-        }
+    [HttpDelete]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var result = await _firmaRepository.Delete(id);
+        return Ok(result);
     }
 }

@@ -1,15 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace enoca.Models
+﻿namespace enoca.Models
 {
-    public class Firma
+    public partial class Firma
     {
-        public Guid Id { get; set; }
-        public string? FirmaAdi { get; set; }
+        public int Id { get; set; }
+        public string FirmaAdi { get; set; } = null!;
         public bool OnayDurumu { get; set; }
         public DateTime SiparisIzinBaslangicTarihi { get; set; }
         public DateTime SiparisIzinBitisTarihi { get; set; }
     }
 }
-    
