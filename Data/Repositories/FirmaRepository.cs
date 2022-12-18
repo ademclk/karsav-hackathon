@@ -23,8 +23,7 @@ public class FirmaRepository : IFirmaRepository
     public async Task<int> Put(Firma firma)
     {
         var result = await _dbContext.Firmalar.Where(x => x.Id == firma.Id).FirstOrDefaultAsync();
-        result!.FirmaAdi = firma.FirmaAdi;
-        result.SiparisIzinBaslangicTarihi = firma.SiparisIzinBaslangicTarihi;
+        result!.SiparisIzinBaslangicTarihi = firma.SiparisIzinBaslangicTarihi;
         result.SiparisIzinBitisTarihi = firma.SiparisIzinBitisTarihi;
         result.OnayDurumu = firma.OnayDurumu;
         await _dbContext.SaveChangesAsync();
